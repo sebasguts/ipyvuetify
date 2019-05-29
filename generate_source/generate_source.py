@@ -14,10 +14,12 @@ widgetgen = f'{here}/node_modules/.bin/widgetgen'
 
 es6_template = f'{here}/es6-template.njk'
 python_template = f'{here}/python.njk'
+julia_template = f'{here}/julia.njk'
 
 project_dir = f'{here}/..'
 destination_js = f'{project_dir}/js/lib/generated'
 destination_python = f'{project_dir}/ipyvuetify/generated'
+destination_julia = f'{project_dir}/jlvuetify/generated'
 
 
 def reset_dir(name):
@@ -33,7 +35,7 @@ def generate():
 
     generate_schema(vuetify_api, base_schema, widget_gen_schema)
 
-    subprocess.check_call('npm install', cwd=here, shell=True)
+    # subprocess.check_call('npm install', cwd=here, shell=True)
 
     reset_dir(destination_js)
     subprocess.check_call(
@@ -53,4 +55,9 @@ def generate():
     subprocess.check_call(
         f'{widgetgen} -p json -o {destination_python} -t {python_template} '
         f'{widget_gen_schema} python',
+        shell=True)
+    reset_dir(destination_julia)
+    subprocess.check_call(
+        f'{widgetgen} -p json -o {destination_julia} -t {julia_template} '
+        f'{widget_gen_schema} julia',
         shell=True)

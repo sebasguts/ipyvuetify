@@ -9,7 +9,12 @@ build/
 # generated code
 generate_source/build
 ipyvuetify/generated
+
 js/lib/generated
+
+jlvuetify/generated
 
 # Compiled javascript
 ipyvuetify/static/
+
+*.vscode
